@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import MovingDot from './MovingDot.js'
+import PictureContainer from './PictureContainer.js'
 import logo from './logo.svg';
 import './App.css';
 
@@ -15,6 +16,7 @@ class App extends Component {
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
         <MovingDot/>
+        <PictureContainer/>
       </div>
     );
   }
