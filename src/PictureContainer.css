@@ -1,4 +1,7 @@
 .target{
+    position: relative;
+    top: 50px;
+    left: 50px;
     width: 500px;
     height: 500px;
     border: black solid 1px;

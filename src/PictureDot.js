@@ -6,7 +6,7 @@ class PictureDot extends Component{
     super(props);
     this.state = {
       style: {
-        position: 'relative',
+        position: 'absolute',
         top: props.y,
         left: props.x
       }

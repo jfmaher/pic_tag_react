@@ -5,7 +5,8 @@ import './PictureContainer.css'
 class PictureContainer extends Component{
   constructor(props){
     super(props);
-    this.state = {'dots': []}
+    this.state = {'dots': []};
+    this.containerRef = React.createRef();
   }
 
   onDragOver = (ev) => {
@@ -16,7 +17,7 @@ class PictureContainer extends Component{
   onDrop = (ev) => {
     ev.preventDefault();
     let dots = this.state.dots;
-    dots.push([ev.clientX, ev.clientY]);
+    dots.push([ev.clientX - this.containerRef.current.offsetLeft, ev.clientY - this.containerRef.current.offsetTop]);
     this.setState({
       'dots': dots
     });
@@ -26,6 +27,7 @@ class PictureContainer extends Component{
   render(){
     return (
       <div className='target'
+           ref={this.containerRef}
            onDragOver={this.onDragOver}
            onDrop={this.onDrop}>
         { this.state.dots.map(([x, y], index) => (
