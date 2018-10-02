@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PictureDot from './PictureDot.js'
 import './PictureContainer.css'
 
 class PictureContainer extends Component{
@@ -26,7 +27,11 @@ class PictureContainer extends Component{
     return (
       <div className='target'
            onDragOver={this.onDragOver}
-           onDrop={this.onDrop}/>
+           onDrop={this.onDrop}>
+        { this.state.dots.map(([x, y], index) => (
+          <PictureDot key={index} x={x} y={y}/>
+        ))}
+      </div>
     )
   }
 }
