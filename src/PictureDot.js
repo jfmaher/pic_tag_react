@@ -19,9 +19,13 @@ class PictureDot extends Component{
   }
 
   onClick = (ev) => {
-    this.setState((state, props) => {
-      return {form: {open: !state.form.open}}
+    this.setState({form: {...this.state.form, open: !this.state.form.open}
     })
+  };
+
+  onInput = (ev) => {
+    let value = ev.target.value;
+    this.setState({form: {...this.state.form, name: value}})
   };
 
   render() {
@@ -29,7 +33,11 @@ class PictureDot extends Component{
     if (this.state.form.open){
       form = (
         <form className='form'>
-          <input type='text'/>
+          <input
+            type='text'
+            onChange={this.onInput}
+            value={this.state.form.name}
+          />
         </form>
       )
     }
