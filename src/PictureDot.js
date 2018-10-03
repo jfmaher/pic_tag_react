@@ -20,7 +20,7 @@ class PictureDot extends Component{
 
   onClick = (ev) => {
     this.setState((state, props) => {
-      return {form: {open: !this.state.form.open}}
+      return {form: {open: !state.form.open}}
     })
   };
 
