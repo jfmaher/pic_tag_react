@@ -28,15 +28,18 @@ class PictureDot extends Component{
     let form = null;
     if (this.state.form.open){
       form = (
-        <div className='form'>Form Div</div>
+        <form className='form'>
+          <input type='text'/>
+        </form>
       )
     }
     return (
-      <div style={this.state.style}
-           className='dot'
-           onClick={this.onClick}>
+      <div style={this.state.style}>
+        <div className='dot'
+             onClick={this.onClick}>
+          Hello
+        </div>
         {form}
-        Hello
       </div>
     )
   }
