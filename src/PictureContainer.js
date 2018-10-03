@@ -17,7 +17,8 @@ class PictureContainer extends Component{
   onDrop = (ev) => {
     ev.preventDefault();
     let dots = this.state.dots;
-    dots.push([ev.clientX - this.containerRef.current.offsetLeft, ev.clientY - this.containerRef.current.offsetTop]);
+    // Contains dot radius.
+    dots.push([ev.clientX - this.containerRef.current.offsetLeft - 25, ev.clientY - this.containerRef.current.offsetTop - 25]);
     this.setState({
       'dots': dots
     });
