@@ -1,10 +1,12 @@
-import React, {Component} from 'react';
+import React from 'react';
+import MovingDot from './MovingDot'
 import './MovingDot.css'
 import './Form.css'
 
-class PictureDot extends Component{
+class PictureDot extends MovingDot{
   constructor(props) {
     super(props);
+    this.name = props.name;
     this.state = {
       form: {
         open: false,
@@ -44,6 +46,8 @@ class PictureDot extends Component{
     return (
       <div style={this.state.style}>
         <div className='dot'
+             draggable
+             onDragStart={(e) => this.onDragStart(e, this.name)}
              onClick={this.onClick}>
           Hello
         </div>

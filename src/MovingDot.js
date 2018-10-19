@@ -9,7 +9,7 @@ class MovingDot extends Component{
 
   render(){
     return (
-      <div draggable onDragStart={(e) => this.onDragStart(e, 'dot')} className='dot'>
+      <div draggable onDragStart={(e) => this.onDragStart(e, 'new')} className='dot'>
         Hello
       </div>
     )

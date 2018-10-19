@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import PictureDot from './PictureDot.js'
 import './PictureContainer.css'
+const uuidv4 = require('uuid/v4');
 
 class PictureContainer extends Component{
   constructor(props){
@@ -16,13 +17,21 @@ class PictureContainer extends Component{
 
   onDrop = (ev) => {
     ev.preventDefault();
+    const id = ev.dataTransfer.getData('id');
     let dots = this.state.dots;
     // Contains dot radius.
-    dots.push([ev.clientX - this.containerRef.current.offsetLeft - 25, ev.clientY - this.containerRef.current.offsetTop - 25]);
+    if (id !== 'new') {
+      let index = dots.findIndex(([list_id, a, b]) => {
+        return list_id === id
+      });
+      dots.splice(index, 1)
+    }
+
+    dots.push([uuidv4(), ev.clientX - this.containerRef.current.offsetLeft - 25, ev.clientY - this.containerRef.current.offsetTop - 25]);
     this.setState({
       'dots': dots
     });
-    console.log('dropped')
+    console.log('dropped');
   };
 
   render(){
@@ -31,8 +40,8 @@ class PictureContainer extends Component{
            ref={this.containerRef}
            onDragOver={this.onDragOver}
            onDrop={this.onDrop}>
-        { this.state.dots.map(([x, y], index) => (
-          <PictureDot key={index} x={x} y={y}/>
+        { this.state.dots.map(([id, x, y], index) => (
+          <PictureDot key={id} name={id} x={x} y={y}/>
         ))}
       </div>
     )
