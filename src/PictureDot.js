@@ -1,7 +1,7 @@
 import React from 'react';
 import MovingDot from './MovingDot'
+import DotForm from './DotForm'
 import './MovingDot.css'
-import './Form.css'
 
 class PictureDot extends MovingDot{
   constructor(props) {
@@ -10,7 +10,7 @@ class PictureDot extends MovingDot{
     this.state = {
       form: {
         open: false,
-        name: ''
+        form_data: props.form
       },
       style: {
         position: 'absolute',
@@ -25,22 +25,11 @@ class PictureDot extends MovingDot{
     })
   };
 
-  onInput = (ev) => {
-    let value = ev.target.value;
-    this.setState({form: {...this.state.form, name: value}})
-  };
-
   render() {
     let form = null;
     if (this.state.form.open){
       form = (
-        <form className='form'>
-          <input
-            type='text'
-            onChange={this.onInput}
-            value={this.state.form.name}
-          />
-        </form>
+        <DotForm data={this.state.form.form_data}/>
       )
     }
     return (
