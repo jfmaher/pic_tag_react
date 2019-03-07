@@ -8,7 +8,7 @@ class PictureDot extends MovingDot{
     this.name = props.name;
     this.state = {
       form : {
-        value: '',
+        value: props.value,
         display: false
       },
       style: {
@@ -17,6 +17,11 @@ class PictureDot extends MovingDot{
         left: props.x
       }
     };
+  }
+
+  onDragStart2 = (ev, id, value) => {
+    this.onDragStart(ev, id);
+    ev.dataTransfer.setData('value', value);
   }
 
   onInput = (ev) =>{
@@ -41,7 +46,7 @@ class PictureDot extends MovingDot{
       <div style={this.state.style}>
         <div className='dot'
              draggable
-             onDragStart={(e) => this.onDragStart(e, this.name)}
+             onDragStart={(e) => this.onDragStart2(e, this.name, this.state.form.value)}
              onClick={this.onClick}>
           Hello
         </div>

@@ -17,17 +17,18 @@ class PictureContainer extends Component{
 
   onDrop = (ev) => {
     ev.preventDefault();
+    const value = ev.dataTransfer.getData('value');
     const id = ev.dataTransfer.getData('id');
     let dots = this.state.dots;
     // Contains dot radius.
     if (id !== 'new') {
-      let index = dots.findIndex(([list_id, a, b]) => {
+      let index = dots.findIndex(([list_id, a, b, value]) => {
         return list_id === id
       });
       dots.splice(index, 1)
     }
 
-    dots.push([uuidv4(), ev.clientX - this.containerRef.current.offsetLeft - 25, ev.clientY - this.containerRef.current.offsetTop - 25]);
+    dots.push([uuidv4(), ev.clientX - this.containerRef.current.offsetLeft - 25, ev.clientY - this.containerRef.current.offsetTop - 25, value]);
     this.setState({
       'dots': dots
     });
@@ -40,8 +41,8 @@ class PictureContainer extends Component{
            ref={this.containerRef}
            onDragOver={this.onDragOver}
            onDrop={this.onDrop}>
-        { this.state.dots.map(([id, x, y], index) => (
-          <PictureDot key={id} name={id} x={x} y={y}/>
+        { this.state.dots.map(([id, x, y, value], index) => (
+          <PictureDot key={id} name={id} x={x} y={y} value={value}/>
         ))}
       </div>
     )
