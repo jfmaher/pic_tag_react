@@ -30,7 +30,7 @@ class PictureContainer extends Component{
       dots.splice(index, 1)
     }
 
-    dots.push([uuidv4(), ev.clientX - this.containerRef.current.offsetLeft - 25, ev.clientY - this.containerRef.current.offsetTop - 25, form]);
+    dots.push([uuidv4(), ev.pageX - this.containerRef.current.offsetLeft - 25, ev.pageY - this.containerRef.current.offsetTop - 25, form]);
     this.setState({
       'dots': dots
     });
