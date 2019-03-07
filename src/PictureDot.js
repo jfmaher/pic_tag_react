@@ -1,5 +1,6 @@
 import React from 'react';
 import MovingDot from './MovingDot'
+import request from 'request'
 import './MovingDot.css'
 
 class PictureDot extends MovingDot{
@@ -39,6 +40,13 @@ class PictureDot extends MovingDot{
 
   onSubmit = (ev) => {
     ev.preventDefault();
+    const payload = {
+      top: this.state.style.top,
+      left: this.state.style.left,
+      value: this.state.form.value
+    }
+    request.post({url: 'http://localhost:5000/new-button', json: payload}, (data) =>
+    console.log('sent dot'));
   }
 
   onClick = (ev) => {
