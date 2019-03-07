@@ -6,3 +6,14 @@
     height: 500px;
     border: black solid 1px;
 }
+
+.form {
+    padding: 10px;
+    background: bisque;
+    position: relative;
+    left: 50px;
+}
+
+.hide {
+  display: none;
+}

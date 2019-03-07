@@ -1,6 +1,5 @@
 import React from 'react';
 import MovingDot from './MovingDot'
-import DotForm from './DotForm'
 import './MovingDot.css'
 
 class PictureDot extends MovingDot{
@@ -8,9 +7,9 @@ class PictureDot extends MovingDot{
     super(props);
     this.name = props.name;
     this.state = {
-      form: {
-        open: false,
-        form_data: props.form
+      form : {
+        value: '',
+        display: false
       },
       style: {
         position: 'absolute',
@@ -20,18 +19,24 @@ class PictureDot extends MovingDot{
     };
   }
 
-  onClick = (ev) => {
-    this.setState({form: {...this.state.form, open: !this.state.form.open}
+  onInput = (ev) =>{
+    let target = ev.target;
+    this.setState((state, props) => {
+      return {form: {...state.form, value: target.value}}
     })
-  };
+  }
+
+  onSubmit = (ev) => {
+    ev.preventDefault();
+  }
+
+  onClick = (ev) => {
+    this.setState((state, props) => {
+      return {form: {...state.form, display: !state.form.display}}
+    });
+  }
 
   render() {
-    let form = null;
-    if (this.state.form.open){
-      form = (
-        <DotForm data={this.state.form.form_data}/>
-      )
-    }
     return (
       <div style={this.state.style}>
         <div className='dot'
@@ -40,7 +45,11 @@ class PictureDot extends MovingDot{
              onClick={this.onClick}>
           Hello
         </div>
-        {form}
+        {this.state.form.display ?
+          <form className='form' onSubmit={this.onSubmit}>
+            <input key={this.name} name={this.name} value={this.state['form']['value']} onChange={this.onInput}/>
+          </form>
+        :''}
       </div>
     )
   }
