@@ -15,23 +15,25 @@ class PictureDot extends MovingDot{
       },
       dotStyle: {
         backgroundColor: 'aquamarine'
+      },
+      form: {
+        value: '',
+        display: false
       }
     };
+    if(props.dotStyle)
+      this.state['dotStyle'] = this.props.dotStyle;
     if(props.form)
       this.state['form'] = {
         value: props.form.value,
         display: props.form.display
-      }
-    else
-      this.state['form'] = {
-        value: '',
-        display: false
       }
   }
 
   onDragStart2 = (ev, id) => {
     this.onDragStart(ev, id);
     ev.dataTransfer.setData('form', JSON.stringify(this.state.form));
+    ev.dataTransfer.setData('style', JSON.stringify(this.state.dotStyle));
   }
 
   onInput = (ev) =>{

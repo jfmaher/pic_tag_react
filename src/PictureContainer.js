@@ -18,8 +18,9 @@ class PictureContainer extends Component{
   onDrop = (ev) => {
     ev.preventDefault();
     let form = ev.dataTransfer.getData('form');
-    if (form)
-      form = JSON.parse(form);
+    let style = ev.dataTransfer.getData('style')
+    if (form) form = JSON.parse(form);
+    if (style) style = JSON.parse(style);
     const id = ev.dataTransfer.getData('id');
     let dots = this.state.dots;
     // Contains dot radius.
@@ -30,7 +31,7 @@ class PictureContainer extends Component{
       dots.splice(index, 1)
     }
 
-    dots.push([uuidv4(), ev.pageX - this.containerRef.current.offsetLeft - 25, ev.pageY - this.containerRef.current.offsetTop - 25, form]);
+    dots.push([uuidv4(), ev.pageX - this.containerRef.current.offsetLeft - 25, ev.pageY - this.containerRef.current.offsetTop - 25, form, style]);
     this.setState({
       'dots': dots
     });
@@ -43,8 +44,8 @@ class PictureContainer extends Component{
            ref={this.containerRef}
            onDragOver={this.onDragOver}
            onDrop={this.onDrop}>
-        { this.state.dots.map(([id, x, y, form], index) => (
-          <PictureDot key={id} name={id} x={x} y={y} form={form}/>
+        { this.state.dots.map(([id, x, y, form, style], index) => (
+          <PictureDot key={id} name={id} x={x} y={y} form={form} dotStyle={style}/>
         ))}
       </div>
     )
