@@ -4,3 +4,24 @@
     height: 50px;
     width: 50px;
 }
+
+.red {
+  background: maroon;
+}
+
+.yellow {
+  background: yellow;
+}
+
+.radios{
+  display: flex;
+  flex-direction: column;
+}
+
+.radios div{
+  text-align: left;
+}
+
+.radios span{
+  margin-left: 5px;
+}
