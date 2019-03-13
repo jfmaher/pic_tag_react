@@ -55,7 +55,7 @@ class PictureDot extends MovingDot{
   }
 
   changeColour = (ev) => {
-    const target = ev.target, value = ev.target.value;
+    const value = ev.target.value;
     this.setState({dotStyle:{...this.dotStyle, backgroundColor: value}})
   }
 
