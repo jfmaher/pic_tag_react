@@ -23,7 +23,6 @@ class PictureContainer extends Component{
     if (style) style = JSON.parse(style);
     const id = ev.dataTransfer.getData('id');
     let dots = this.state.dots;
-    // Contains dot radius.
     if (id !== 'new') {
       let index = dots.findIndex(([list_id, a, b, value]) => {
         return list_id === id
@@ -31,6 +30,7 @@ class PictureContainer extends Component{
       dots.splice(index, 1)
     }
 
+    // Contains dot radius.
     dots.push([uuidv4(), ev.pageX - this.containerRef.current.offsetLeft - 25, ev.pageY - this.containerRef.current.offsetTop - 25, form, style]);
     this.setState({
       'dots': dots
