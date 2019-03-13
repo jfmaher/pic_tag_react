@@ -59,7 +59,7 @@ class PictureDot extends MovingDot{
     this.setState({dotStyle:{...this.dotStyle, backgroundColor: value}})
   }
 
-  onClick = (ev) => {
+  toggleForm = (ev) => {
     this.setState((state, props) => {
       return {form: {...state.form, display: !state.form.display}}
     });
@@ -88,7 +88,7 @@ class PictureDot extends MovingDot{
              style={this.state.dotStyle}
              draggable
              onDragStart={(e) => this.onDragStart2(e, this.name)}
-             onClick={this.onClick}>
+             onClick={this.toggleForm}>
           Hello
         </div>
         {this.state.form.display ?
